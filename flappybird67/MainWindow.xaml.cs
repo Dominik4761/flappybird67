@@ -46,4 +46,3 @@ namespace flappybird67
 			}
 		}
 	}
-}
