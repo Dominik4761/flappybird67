@@ -10,14 +10,22 @@
 
   <ItemGroup>
     <None Remove="pengo.jpg" />
+    <None Remove="pkivagott.png" />
     <None Remove="pokol.jpg" />
     <None Remove="zsido.jpg" />
+    <None Remove="zskivagott.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="pengo.jpg" />
+    <Resource Include="pkivagott.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="pokol.jpg" />
     <Resource Include="zsido.jpg" />
+    <Resource Include="zskivagott.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
