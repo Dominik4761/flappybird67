@@ -17,6 +17,11 @@ namespace flappybird67
 		const double res = 140;
 		const double tavolsag = 260;
 
+		int pont = 0;
+
+		bool pontozva1 = false;
+		bool pontozva2 = false;
+
 		Random rnd = new Random();
 
 		public MainWindow()
@@ -35,16 +40,26 @@ namespace flappybird67
 			sebesseg += gravitacio;
 			Canvas.SetTop(pengo, Canvas.GetTop(pengo) + sebesseg);
 
-			MozgatCsopar(alsocso, felsocso, alsocso2);
-			MozgatCsopar(alsocso2, felsocso2, alsocso);
+			MozgatCsopar(alsocso, felsocso, alsocso2, ref pontozva1);
+			MozgatCsopar(alsocso2, felsocso2, alsocso, ref pontozva2);
+
+			tbPont.Text = "Pontszám: " + pont;
 		}
 
-		void MozgatCsopar(Rectangle also, Rectangle felso, Rectangle masikAlso)
+		void MozgatCsopar(Rectangle also, Rectangle felso, Rectangle masikAlso, ref bool pontozva)
 		{
 			double x = Canvas.GetLeft(also) - oszlopSebesseg;
 
 			Canvas.SetLeft(also, x);
 			Canvas.SetLeft(felso, x);
+
+			double pengoX = Canvas.GetLeft(pengo) + pengo.Width;
+
+			if (!pontozva && pengoX > x + also.Width)
+			{
+				pont++;
+				pontozva = true;
+			}
 
 			if (x < -also.Width)
 			{
@@ -57,6 +72,8 @@ namespace flappybird67
 				double alsoTop = rnd.Next(260, 400);
 				Canvas.SetTop(also, alsoTop);
 				Canvas.SetTop(felso, alsoTop - res - felso.Height);
+
+				pontozva = false;
 			}
 		}
 

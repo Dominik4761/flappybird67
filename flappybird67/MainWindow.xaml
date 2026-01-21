@@ -12,12 +12,20 @@
 					<ImageBrush ImageSource="/pokol.jpg" Stretch="Fill"/>
 				</Canvas.Background>
 
+				<TextBlock x:Name="tbPont"
+                           Text="Pontszám: 0"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Canvas.Left="10"
+                           Canvas.Top="10"
+                           Panel.ZIndex="999"/>
+
 				<Rectangle x:Name="pengo"
                            Width="52"
                            Height="64"
                            Canvas.Left="28"
-                           Canvas.Top="206"
-                           Stroke="Black">
+                           Canvas.Top="206">
 					<Rectangle.Fill>
 						<ImageBrush ImageSource="/pengo.jpg" Stretch="Fill"/>
 					</Rectangle.Fill>
