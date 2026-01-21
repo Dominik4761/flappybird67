@@ -1,25 +1,23 @@
-﻿using System.Text;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace flappybird67
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
 		DispatcherTimer timer = new DispatcherTimer();
 		double sebesseg = 0;
 		double gravitacio = 0.6;
+
+		double oszlopSebesseg = 3.0;
+		const double res = 140;
+		const double tavolsag = 260;
+
+		Random rnd = new Random();
 
 		public MainWindow()
 		{
@@ -36,6 +34,30 @@ namespace flappybird67
 		{
 			sebesseg += gravitacio;
 			Canvas.SetTop(pengo, Canvas.GetTop(pengo) + sebesseg);
+
+			MozgatCsopar(alsocso, felsocso, alsocso2);
+			MozgatCsopar(alsocso2, felsocso2, alsocso);
+		}
+
+		void MozgatCsopar(Rectangle also, Rectangle felso, Rectangle masikAlso)
+		{
+			double x = Canvas.GetLeft(also) - oszlopSebesseg;
+
+			Canvas.SetLeft(also, x);
+			Canvas.SetLeft(felso, x);
+
+			if (x < -also.Width)
+			{
+				double masikX = Canvas.GetLeft(masikAlso);
+				double ujX = masikX + tavolsag;
+
+				Canvas.SetLeft(also, ujX);
+				Canvas.SetLeft(felso, ujX);
+
+				double alsoTop = rnd.Next(260, 400);
+				Canvas.SetTop(also, alsoTop);
+				Canvas.SetTop(felso, alsoTop - res - felso.Height);
+			}
 		}
 
 		void Ablak_KeyDown(object sender, KeyEventArgs e)
@@ -46,3 +68,4 @@ namespace flappybird67
 			}
 		}
 	}
+}

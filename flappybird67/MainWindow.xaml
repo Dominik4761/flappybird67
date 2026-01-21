@@ -3,66 +3,84 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:flappybird67"
         mc:Ignorable="d"
         Title="Flappybird67" Height="490" Width="525">
 	<Grid>
-		<Canvas>
-			<Canvas.Background>
-				<ImageBrush ImageSource="/pokol.jpg"/>
-			</Canvas.Background>
-			<Rectangle x:Name="pengo"
-           Height="64"
-           Width="52"
-           Canvas.Left="28"
-           Canvas.Top="206"
-           Stroke="Black">
-				<Rectangle.Fill>
-					<ImageBrush ImageSource="/pengo.jpg"/>
-				</Rectangle.Fill>
-			</Rectangle>
+		<Viewbox Stretch="Uniform">
+			<Canvas Width="525" Height="490">
+				<Canvas.Background>
+					<ImageBrush ImageSource="/pokol.jpg" Stretch="Fill"/>
+				</Canvas.Background>
 
-			<Rectangle x:Name="alsocso" Width="75" Height="160" Canvas.Left="421" Canvas.Top="333" HorizontalAlignment="Left" VerticalAlignment="Top">
-				<Rectangle.Fill>
-					<ImageBrush ImageSource="/zsido.jpg"/>
-				</Rectangle.Fill>
-			</Rectangle>
-			<Rectangle x:Name="felsocso" Height="160" Canvas.Left="421" Canvas.Top="17" Width="75" RenderTransformOrigin="0.5,0.5">
-				<Rectangle.Fill>
-					<ImageBrush ImageSource="/zsido.jpg"/>
+				<Rectangle x:Name="pengo"
+                           Width="52"
+                           Height="64"
+                           Canvas.Left="28"
+                           Canvas.Top="206"
+                           Stroke="Black">
+					<Rectangle.Fill>
+						<ImageBrush ImageSource="/pengo.jpg" Stretch="Fill"/>
+					</Rectangle.Fill>
+				</Rectangle>
 
-				</Rectangle.Fill>
-				<Rectangle.RenderTransform>
-					<TransformGroup>
-						<ScaleTransform ScaleY="-1"/>
-						<SkewTransform AngleX="1.123"/>
-						<RotateTransform/>
-						<TranslateTransform X="0.98"/>
-					</TransformGroup>
-				</Rectangle.RenderTransform>
-			</Rectangle>
-			<Rectangle x:Name="alsocso2" Width="75" Height="160" Canvas.Left="234" Canvas.Top="274" HorizontalAlignment="Left" VerticalAlignment="Top">
-				<Rectangle.Fill>
-					<ImageBrush ImageSource="/zsido.jpg"/>
-				</Rectangle.Fill>
-			</Rectangle>
-			<Rectangle x:Name="felsocso2" Height="160" Canvas.Left="234" Canvas.Top="-42" Width="75" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
-				<Rectangle.Fill>
-					<ImageBrush ImageSource="/zsido.jpg"/>
+				<Rectangle x:Name="alsocso"
+                           Width="75"
+                           Height="160"
+                           Canvas.Left="421"
+                           Canvas.Top="333">
+					<Rectangle.Fill>
+						<ImageBrush ImageSource="/zsido.jpg" Stretch="Fill"/>
+					</Rectangle.Fill>
+				</Rectangle>
 
-				</Rectangle.Fill>
-				<Rectangle.RenderTransform>
-					<TransformGroup>
-						<ScaleTransform ScaleY="-1"/>
-						<SkewTransform AngleX="1.123"/>
-						<RotateTransform/>
-						<TranslateTransform X="0.98"/>
-					</TransformGroup>
-				</Rectangle.RenderTransform>
-			</Rectangle>
+				<Rectangle x:Name="felsocso"
+                           Width="75"
+                           Height="160"
+                           Canvas.Left="421"
+                           Canvas.Top="17"
+                           RenderTransformOrigin="0.5,0.5">
+					<Rectangle.Fill>
+						<ImageBrush ImageSource="/zsido.jpg" Stretch="Fill"/>
+					</Rectangle.Fill>
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleY="-1"/>
+							<SkewTransform AngleX="1.123"/>
+							<RotateTransform/>
+							<TranslateTransform X="0.98"/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
+				</Rectangle>
 
-		</Canvas>
+				<Rectangle x:Name="alsocso2"
+                           Width="75"
+                           Height="160"
+                           Canvas.Left="234"
+                           Canvas.Top="274">
+					<Rectangle.Fill>
+						<ImageBrush ImageSource="/zsido.jpg" Stretch="Fill"/>
+					</Rectangle.Fill>
+				</Rectangle>
 
-
+				<Rectangle x:Name="felsocso2"
+                           Width="75"
+                           Height="160"
+                           Canvas.Left="234"
+                           Canvas.Top="-42"
+                           RenderTransformOrigin="0.5,0.5">
+					<Rectangle.Fill>
+						<ImageBrush ImageSource="/zsido.jpg" Stretch="Fill"/>
+					</Rectangle.Fill>
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleY="-1"/>
+							<SkewTransform AngleX="1.123"/>
+							<RotateTransform/>
+							<TranslateTransform X="0.98"/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
+				</Rectangle>
+			</Canvas>
+		</Viewbox>
 	</Grid>
 </Window>
