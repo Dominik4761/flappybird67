@@ -7,9 +7,9 @@
         Title="Flappybird67" Height="490" Width="525">
 	<Grid>
 		<Viewbox Stretch="Uniform">
-			<Canvas Width="525" Height="490">
+			<Canvas x:Name="jatekCanvas" Width="525" Height="490">
 				<Canvas.Background>
-					<ImageBrush ImageSource="pokol.jpg" Stretch="Fill"/>
+					<ImageBrush ImageSource="pack://application:,,,/pokol.jpg" Stretch="Fill"/>
 				</Canvas.Background>
 
 				<TextBlock x:Name="tbPont"
@@ -21,13 +21,23 @@
                            Canvas.Top="10"
                            Panel.ZIndex="999"/>
 
+				<TextBlock x:Name="tbVege"
+                           Text="Game Over"
+                           FontSize="40"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Canvas.Left="155"
+                           Canvas.Top="210"
+                           Panel.ZIndex="1000"
+                           Visibility="Collapsed"/>
+
 				<Rectangle x:Name="pengo"
                            Width="52"
                            Height="64"
                            Canvas.Left="28"
                            Canvas.Top="206">
 					<Rectangle.Fill>
-						<ImageBrush ImageSource="pkivagott.png" Stretch="Fill"/>
+						<ImageBrush ImageSource="pack://application:,,,/pkivagott.png" Stretch="Fill"/>
 					</Rectangle.Fill>
 				</Rectangle>
 
@@ -37,7 +47,7 @@
                            Canvas.Left="421"
                            Canvas.Top="333">
 					<Rectangle.Fill>
-						<ImageBrush ImageSource="zskivagott.png" Stretch="Fill"/>
+						<ImageBrush ImageSource="pack://application:,,,/zskivagott.png" Stretch="Fill"/>
 					</Rectangle.Fill>
 				</Rectangle>
 
@@ -48,7 +58,7 @@
                            Canvas.Top="17"
                            RenderTransformOrigin="0.5,0.5">
 					<Rectangle.Fill>
-						<ImageBrush ImageSource="zskivagott.png" Stretch="Fill"/>
+						<ImageBrush ImageSource="pack://application:,,,/zskivagott.png" Stretch="Fill"/>
 					</Rectangle.Fill>
 					<Rectangle.RenderTransform>
 						<TransformGroup>
@@ -66,7 +76,7 @@
                            Canvas.Left="234"
                            Canvas.Top="274">
 					<Rectangle.Fill>
-						<ImageBrush ImageSource="zskivagott.png" Stretch="Fill"/>
+						<ImageBrush ImageSource="pack://application:,,,/zskivagott.png" Stretch="Fill"/>
 					</Rectangle.Fill>
 				</Rectangle>
 
@@ -77,7 +87,7 @@
                            Canvas.Top="-42"
                            RenderTransformOrigin="0.5,0.5">
 					<Rectangle.Fill>
-						<ImageBrush ImageSource="zskivagott.png" Stretch="Fill"/>
+						<ImageBrush ImageSource="pack://application:,,,/zskivagott.png" Stretch="Fill"/>
 					</Rectangle.Fill>
 					<Rectangle.RenderTransform>
 						<TransformGroup>
