@@ -18,11 +18,13 @@ namespace flappybird67
 		const double tavolsag = 260;
 
 		int pont = 0;
+		int rekord = 0;
 
 		bool pontozva1 = false;
 		bool pontozva2 = false;
 
 		bool vege = false;
+		bool jatekElindult = false;
 
 		Random rnd = new Random();
 
@@ -32,14 +34,77 @@ namespace flappybird67
 
 			timer.Interval = TimeSpan.FromMilliseconds(20);
 			timer.Tick += JatekLoop;
-			timer.Start();
 
 			KeyDown += Ablak_KeyDown;
+
+			jatekCanvas.Visibility = Visibility.Hidden;
+			menuCanvas.Visibility = Visibility.Visible;
+		}
+
+		private void Konnyu_Click(object sender, RoutedEventArgs e)
+		{
+			oszlopSebesseg = 3.0;
+			InditJatek();
+		}
+
+		private void Kozepes_Click(object sender, RoutedEventArgs e)
+		{
+			oszlopSebesseg = 6.0;
+			InditJatek();
+		}
+
+		private void Nehez_Click(object sender, RoutedEventArgs e)
+		{
+			oszlopSebesseg = 7.5;
+			InditJatek();
+		}
+
+		void InditJatek()
+		{
+			menuCanvas.Visibility = Visibility.Hidden;
+			jatekCanvas.Visibility = Visibility.Visible;
+
+			ResetJatek();
+			timer.Start();
+		}
+
+		void ResetJatek()
+		{
+			vege = false;
+			jatekElindult = false;
+
+			pont = 0;
+			tbPont.Text = "Pontszám: 0";
+
+			tbVege.Visibility = Visibility.Collapsed;
+			tbRekord.Visibility = Visibility.Collapsed;
+			restartBtn.Visibility = Visibility.Collapsed;
+			backBtn.Visibility = Visibility.Visible;
+
+			sebesseg = 0;
+			Canvas.SetTop(pengo, 206);
+			Canvas.SetLeft(pengo, 28);
+
+			Canvas.SetLeft(alsocso, 421);
+			Canvas.SetTop(alsocso, 333);
+
+			Canvas.SetLeft(felsocso, 421);
+			Canvas.SetTop(felsocso, 17);
+
+			Canvas.SetLeft(alsocso2, 234);
+			Canvas.SetTop(alsocso2, 274);
+
+			Canvas.SetLeft(felsocso2, 234);
+			Canvas.SetTop(felsocso2, -42);
+
+			pontozva1 = false;
+			pontozva2 = false;
 		}
 
 		void JatekLoop(object sender, EventArgs e)
 		{
-			if (vege) return;
+			if (vege || !jatekElindult)
+				return;
 
 			sebesseg += gravitacio;
 			Canvas.SetTop(pengo, Canvas.GetTop(pengo) + sebesseg);
@@ -94,12 +159,12 @@ namespace flappybird67
 
 		void EllenorizUtkozes()
 		{
-			var pRect = Hitbox(pengo, 18, 15, 18, 15);
+			var pRect = Hitbox(pengo, 0, 0, 0, 0);
 
-			var a1 = Hitbox(alsocso, 2, 1, 2, 1);
-			var f1 = Hitbox(felsocso, 2, 1, 2, 1);
-			var a2 = Hitbox(alsocso2, 2, 1, 2, 1);
-			var f2 = Hitbox(felsocso2, 2, 1, 2, 1);
+			var a1 = Hitbox(alsocso, 0, 0, 0, 0);
+			var f1 = Hitbox(felsocso, 0, 0, 0, 0);
+			var a2 = Hitbox(alsocso2, 0, 0, 0, 0);
+			var f2 = Hitbox(felsocso2, 0, 0, 0, 0);
 
 			if (pRect.IntersectsWith(a1) || pRect.IntersectsWith(f1) || pRect.IntersectsWith(a2) || pRect.IntersectsWith(f2))
 			{
@@ -119,16 +184,60 @@ namespace flappybird67
 		void JatekVege()
 		{
 			vege = true;
+			jatekElindult = false;
+
 			timer.Stop();
 			tbVege.Visibility = Visibility.Visible;
+
+			if (pont > rekord)
+			{
+				rekord = pont;
+			}
+
+			tbRekord.Text = "Rekord: " + rekord;
+			tbRekord.Visibility = Visibility.Visible;
+
+			restartBtn.Visibility = Visibility.Visible;
+			backBtn.Visibility = Visibility.Visible;
 		}
 
 		void Ablak_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key == Key.Space && !vege)
+			if (e.Key == Key.Space)
 			{
-				sebesseg = -8;
+				if (!vege && !jatekElindult)
+				{
+					jatekElindult = true;
+					backBtn.Visibility = Visibility.Collapsed;
+					sebesseg = -8;
+				}
+				else if (!vege && jatekElindult)
+				{
+					sebesseg = -8;
+				}
+				else if (vege)
+				{
+					ResetJatek();                 
+					timer.Start();
+				}
 			}
+		}
+
+		private void restartBtn_Click(object sender, RoutedEventArgs e)
+		{
+			ResetJatek();
+			timer.Start();
+		}
+
+		private void backBtn_Click(object sender, RoutedEventArgs e)
+		{
+			timer.Stop();
+
+			jatekCanvas.Visibility = Visibility.Hidden;
+			menuCanvas.Visibility = Visibility.Visible;
+
+			vege = false;
+			jatekElindult = false;
 		}
 	}
 }
